@@ -1,14 +1,25 @@
 import "./Home.scss";
+import UserButton from "../../components/UserButton/UserButton";
 
 function Home() {
   document.title = 'Accueil - SportSee'
+
+  const handleUserChange = (newUserId) => {
+    setActiveUserId(newUserId);
+  };
   
   return (
     <>
       <div className="center">
         <p>Home</p>
-        <button>Utilisateur 12</button>
-        <button>Utilisateur 18</button>
+        <ul>
+          <li>
+            <UserButton userID={12} onClick={handleUserChange} />
+          </li>
+          <li>
+            <UserButton userID={18} onClick={handleUserChange} />
+          </li>
+        </ul>
       </div>
     </>
   );
