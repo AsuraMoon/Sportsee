@@ -28,7 +28,7 @@ function Header() {
 					className={({ isActive }) =>
 						isActive ? 'nav-active' : 'nav-link'
 					}
-					to={`/profil`}
+					to={`/profil/:userId`}
 				>
 					Profil
 				</NavLink>

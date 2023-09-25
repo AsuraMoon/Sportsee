@@ -1,12 +1,14 @@
 import "./Community.scss";
 
+import ComingSoon from "../../layout/NotPage/NotPage";
+
 function Community() {
   document.title = 'Communauté - SportSee'
   
   return (
     <>
       <div>
-        Community
+        <ComingSoon/>
       </div>
     </>
   );

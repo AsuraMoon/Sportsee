@@ -7,6 +7,8 @@ function Home() {
     <>
       <div className="center">
         <p>Home</p>
+        <button>Utilisateur 12</button>
+        <button>Utilisateur 18</button>
       </div>
     </>
   );

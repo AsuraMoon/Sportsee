@@ -1,13 +1,12 @@
+import ComingSoon from "../../layout/NotPage/NotPage";
 import "./Settings.scss";
 
 function Settings() {
-  document.title = 'Réglage - SportSee'
+  document.title = 'Réglages - SportSee'
 
   return (
     <>
-      <div>
-      Settings
-      </div>
+      <ComingSoon/>
     </>
   );
 }
