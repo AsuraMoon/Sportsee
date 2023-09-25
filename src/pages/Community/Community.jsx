@@ -1,7 +1,8 @@
-import React from "react";
 import "./Community.scss";
 
 function Community() {
+  document.title = 'Communauté - SportSee'
+  
   return (
     <>
       <div>

@@ -1,21 +1,20 @@
-import React from 'react';
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 
-/*import Header from '../layout/Header'
-import Sidebar from '../layout/Sidebar'*/
-import Main from "../layout/Main";
+import Header from '../layout/Header/Header'
+import Sidebar from '../layout/SideBar/Sidebar'
+import Main from "../layout/Main/Main";
 
-import Home from '../pages/Home/home';
-import Profil from '../pages/Profil/profil';
-import Settings from '../pages/Settings/settings';
-import Community from '../pages/Community/community';
-import Error from '../pages/Error/error';
+import Home from '../pages/Home/Home';
+import Profil from '../pages/Profil/Profil';
+import Settings from '../pages/Settings/Settings';
+import Community from '../pages/Community/Community';
+import Error from '../pages/Error/Error';
 
-      /*<Header />
-      <Sidebar />*/
 const HeaderFooterLayout = () => {
   return (
     <>
+      <Header />
+      <Sidebar />
       <Main>
         <Outlet />
       </Main>

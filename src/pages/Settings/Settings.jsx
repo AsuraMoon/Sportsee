@@ -1,7 +1,8 @@
-import React from "react";
 import "./Settings.scss";
 
 function Settings() {
+  document.title = 'Réglage - SportSee'
+
   return (
     <>
       <div>

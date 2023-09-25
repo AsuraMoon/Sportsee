@@ -1,11 +1,13 @@
-import React from "react";
 import "./Profil.scss";
+import MonComposant from "../../services/useFetch";
 
 function Profil() {
+
   return (
     <>
-      <div>
+      <div className="123">
         Profil
+        <MonComposant />
       </div>
     </>
   );

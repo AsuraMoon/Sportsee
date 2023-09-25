@@ -1,10 +1,11 @@
-import React from "react";
 import "./Home.scss";
 
 function Home() {
+  document.title = 'Accueil - SportSee'
+  
   return (
     <>
-      <div>
+      <div className="center">
         <p>Home</p>
       </div>
     </>
