@@ -34,8 +34,6 @@ function Profil() {
         const userPerformanceResponse = await fetch(`http://localhost:3000/user/${id}/performance`);
         const userPerformanceData = await userPerformanceResponse.json();
         setUserPerformance(userPerformanceData);
-
-        console.log(userData)
       } catch (error) {
         setErreur(error.message);
       }
@@ -51,13 +49,14 @@ function Profil() {
   if (!userData || !userActivity || !userAverageSessions || !userPerformance) {
     return <div>Chargement en cours...</div>;
   }
+  console.log(userData.data.userInfos.firstName)
 
   return (
     <>
       <div className="123">
 
         <h1>Profil {id}</h1>
-        <h1>Données de l'utilisateur</h1>
+        <h2>bonjour {userData.data.userInfos.firstName} {userData.data.userInfos.lastName}</h2>
         <pre>{JSON.stringify(userData, null, 2)}</pre>
 
         <h1>Données d'activité de l'utilisateur</h1>
