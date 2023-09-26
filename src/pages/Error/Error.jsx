@@ -2,7 +2,6 @@ import "./Error.scss";
 import { Link } from 'react-router-dom'
 
 import logo from '../../assets/logo.svg'
-import AllData from "../../services/useFetch";
 
 
 function Error() {
@@ -20,7 +19,6 @@ function Error() {
           />
           <p>retour a la maison</p>
         </Link>
-        <AllData></AllData>
       </div>
     </>
   );
