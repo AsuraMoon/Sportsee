@@ -1,75 +1,106 @@
-import "./Profil.scss";
+import { useParams } from 'react-router-dom'
 
-import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router";
+import { useFetch } from '../../services/useFetch'
+
+/*import Card from '../../components/Card'
+import ChartsCard from '../../components/ChartsCard'
+import ChartActivity from '../../components/ChartActivity'
+import ChartAverageSessions from '../../components/ChartAverageSessions'
+import ChartGoal from '../../components/ChartGoal'
+import ChartPerformance from '../../components/ChartPerformance'
+
+import energy from '../../assets/energy.svg'
+import chicken from '../../assets/chicken.svg'
+import apple from '../../assets/apple.svg'
+import cheeseburger from '../../assets/cheeseburger.svg'*/
+
+import './Profil.scss'
 
 function Profil() {
+	document.title = 'Profil - SportSee'
 
-  let { id } = useParams();
-  const [userData, setUserData] = useState(null);
-  const [userActivity, setUserActivity] = useState(null);
-  const [userAverageSessions, setUserAverageSessions] = useState(null);
-  const [userPerformance, setUserPerformance] = useState(null);
-  const [erreur, setErreur] = useState(null);
+	const {id} = useParams()
+  const baseCall = `http://localhost:3000/user/${id}`
+  const baseMocked = `../../../public/mockedData/`
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Récupérer les données de l'utilisateur
-        const userDataResponse = await fetch(`http://localhost:3000/user/${id}`);
-        const userData = await userDataResponse.json();
-        setUserData(userData);
+	/* Fetch the data from API or mocked data */
+	const user = useFetch(
+		baseCall,
+		id,
+		baseMocked+`user-activity.json`
+	)
+	const activity = useFetch(
+		baseCall+`/activity`,
+		id,
+		baseMocked+`user-activity.json`
+	)
+	const averageSessions = useFetch(
+		baseCall+`/average-sessions`,
+		id,
+    baseMocked+`user-average-sessions.json`
+	)
+	const performance = useFetch(
+		baseCall+`/performance`,
+		id,
+		baseMocked+`user-performance.json`
+	)
 
-        // Récupérer les données d'activité de l'utilisateur
-        const userActivityResponse = await fetch(`http://localhost:3000/user/${id}/activity`);
-        const userActivityData = await userActivityResponse.json();
-        setUserActivity(userActivityData);
+	const formatData = (dataObject, apiData) => {
+		if (apiData.apiData) {
+			dataObject = apiData.apiData
+			return dataObject
+		} else if (apiData.mockedData) {
+			dataObject = apiData.mockedData
+			return dataObject
+		}
+	}
 
-        // Récupérer les données de sessions moyennes de l'utilisateur
-        const userAverageSessionsResponse = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
-        const userAverageSessionsData = await userAverageSessionsResponse.json();
-        setUserAverageSessions(userAverageSessionsData);
+	/* Init the dataObject and format the data */
+	let userData = {}
+	userData = formatData(userData, user)
+	let activityData = {}
+	activityData = formatData(activityData, activity)
+	let averageSessionsData = {}
+	averageSessionsData = formatData(averageSessionsData, averageSessions)
+	let performanceData = {}
+	performanceData = formatData(performanceData, performance)
 
-        // Récupérer les données de performance de l'utilisateur
-        const userPerformanceResponse = await fetch(`http://localhost:3000/user/${id}/performance`);
-        const userPerformanceData = await userPerformanceResponse.json();
-        setUserPerformance(userPerformanceData);
-      } catch (error) {
-        setErreur(error.message);
-      }
-    };
+	/* If the data is loading, display a loading message to the user */
+	if (
+		user.isLoading ||
+		activity.isLoading ||
+		averageSessions.isLoading ||
+		performance.isLoading
+	) {
+		return (
+			<section className="profil-wrapper">
+				<h2 className="center">Chargement...</h2>
+			</section>
+		)
+	}
 
-    fetchData();
-  }, [id]);
+	/* If the fetches on the API and the mocked data returns errors, display a error message to the user */
+	if (
+		(user.errorAPI && user.errorMocked) ||
+		(activity.errorAPI && activity.errorMocked) ||
+		(averageSessions.errorAPI && averageSessions.errorMocked) ||
+		(performance.errorAPI && performance.errorMocked)
+	) {
+		return (
+			<section className="profil-wrapper">
+				<h2 className="center">Une erreur est survenue !</h2>
+			</section>
+		)
+	}
 
-  if (erreur) {
-    return <div>Erreur : {erreur}</div>;
-  }
-
-  if (!userData || !userActivity || !userAverageSessions || !userPerformance) {
-    return <div>Chargement en cours...</div>;
-  }
-  console.log(userData.data.userInfos.firstName)
-
-  return (
-    <>
-      <div className="123">
-
-        <h1>Profil {id}</h1>
-        <h2>bonjour {userData.data.userInfos.firstName} {userData.data.userInfos.lastName}</h2>
-        <pre>{JSON.stringify(userData, null, 2)}</pre>
-
-        <h1>Données d'activité de l'utilisateur</h1>
-        <pre>{JSON.stringify(userActivity, null, 2)}</pre>
-
-        <h1>Sessions moyennes de l'utilisateur</h1>
-        <pre>{JSON.stringify(userAverageSessions, null, 2)}</pre>
-
-        <h1>Performance de l'utilisateur</h1>
-        <pre>{JSON.stringify(userPerformance, null, 2)}</pre>
-      </div>
-    </>
-  );
+	return (
+		<>
+      <pre>{JSON.stringify(userData, null, 2)}</pre>
+      <pre>{JSON.stringify(activityData, null, 2)}</pre>
+      <pre>{JSON.stringify(averageSessionsData, null, 2)}</pre>
+      <pre>{JSON.stringify(performanceData, null, 2)}</pre>
+		</>
+	)
 }
 
-export default Profil;
+export default Profil
