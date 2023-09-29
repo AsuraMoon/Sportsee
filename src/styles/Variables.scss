@@ -25,14 +25,3 @@ $breakpoints: (
 @mixin no-margin {
 	margin: 0;
 }
-
-/* Creating a filter that will recolor the image to the specified color. */
-@mixin recolor($color: #000, $opacity: 1) {
-	$r: calc(red($color) / 255);
-	$g: calc(green($color) / 255);
-	$b: calc(blue($color) / 255);
-	$a: $opacity;
-
-	// grayscale fallback if SVG from data url is not supported
-	$lightness: lightness($color);
-}

@@ -47,19 +47,19 @@ function Profil() {
       } catch (error) {
         // En cas d'erreur, récupérez les données depuis le fichier mock.
         try {
-          const mockResponse = await fetch(`${baseMocked}user-mock-data.json`);
+          const mockResponse = await fetch(`${baseMocked}user-main-data.json`);
           const mockData = await mockResponse.json();
           setUserData(mockData.data);
 
-          const mockActivityResponse = await fetch(`${baseMocked}user-activity-mock.json`);
+          const mockActivityResponse = await fetch(`${baseMocked}user-activity.json`);
           const mockActivityData = await mockActivityResponse.json();
           setActivityData(mockActivityData);
 
-          const mockAverageSessionsResponse = await fetch(`${baseMocked}user-average-sessions-mock.json`);
+          const mockAverageSessionsResponse = await fetch(`${baseMocked}user-average-sessions.json`);
           const mockAverageSessionsData = await mockAverageSessionsResponse.json();
           setAverageSessionsData(mockAverageSessionsData);
 
-          const mockPerformanceResponse = await fetch(`${baseMocked}user-performance-mock.json`);
+          const mockPerformanceResponse = await fetch(`${baseMocked}user-performance.json`);
           const mockPerformanceData = await mockPerformanceResponse.json();
           setPerformanceData(mockPerformanceData);
 
@@ -74,7 +74,7 @@ function Profil() {
     fetchDataFromAPI();
   }, [baseCall, baseMocked]);
 
-  // Affichage des données formatées dans un format lisible (JSON).
+  // Affichage des données formatées dans un format lisible (JSON) si disponible.
   if (loading) {
     return (
       <section className="profil-wrapper">
@@ -92,12 +92,12 @@ function Profil() {
   }
 
   return (
-    <>
+    <div className='center'>
       <pre>{JSON.stringify(userData, null, 2)}</pre>
       <pre>{JSON.stringify(activityData, null, 2)}</pre>
       <pre>{JSON.stringify(averageSessionsData, null, 2)}</pre>
       <pre>{JSON.stringify(performanceData, null, 2)}</pre>
-    </>
+    </div>
   );
 }
 

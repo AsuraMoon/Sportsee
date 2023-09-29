@@ -3,41 +3,31 @@
 /* ---------------------------------------- */
 /* ==                HEADER                */
 /*---------------------------------------- */
-.nav {
+.header{
+	position: fixed;
+	z-index: 2;
+	background: #020203;
 	display: flex;
-	left: 20%;
-	justify-content: space-evenly;
-	width: 80%;
-	@include desktop-breakpoint {
-		justify-content: space-between;
-		width: 70%;
-	}
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 0px;
+	width: 100%;
 	&-active {
 		text-decoration: underline;
 	}
-	&-wrapper {
-		z-index: 2;
-		position: fixed;
-		width: 100%;
-		height: 5.6875rem;
-		background: #020203;
-		img {
-			width: 22%;
-			height: 3.75rem;
-			@include desktop-breakpoint {
-				width: 15%;
-			}
+	&-nav{
+		width: 70%;
+		display: flex;
+		justify-content: space-around;
+		&-active {
+			text-decoration: underline;
 		}
-		a {
-			@include desktop-breakpoint {
-				width: 15%;
-			}
+		&-link,
+		&-active {
+			color: #ffffff;
+			font-size: 1.5rem;
+			font-weight: 500;
 		}
-	}
-	&-link,
-	&-active {
-		color: #ffffff;
-		font-size: 1.5rem;
-		font-weight: 500;
 	}
 }
+

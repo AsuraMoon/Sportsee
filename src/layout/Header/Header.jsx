@@ -7,18 +7,19 @@ import './Header.scss'
 function Header() {
 
 	return (
-		<header className="nav-wrapper">
+		<header className="header">
 			<Link to="/">
 				<img
 					src={logo}
 					alt="SportSee Logo"
-					className="nav-logo vertical-center"
+					className="header-logo"
 				/>
 			</Link>
-			<nav className="nav vertical-center">
+
+			<nav className="header-nav">
 				<NavLink
 					className={({ isActive }) =>
-						isActive ? 'nav-active' : 'nav-link'
+						isActive ? 'header-nav-active' : 'header-nav-link'
 					}
 					to="/"
 				>
@@ -26,7 +27,7 @@ function Header() {
 				</NavLink>
 				<NavLink
 					className={({ isActive }) =>
-						isActive ? 'nav-active' : 'nav-link'
+						isActive ? 'header-nav-active' : 'header-nav-link'
 					}
 					to={`/profil/:userId`}
 				>
@@ -34,7 +35,7 @@ function Header() {
 				</NavLink>
 				<NavLink
 					className={({ isActive }) =>
-						isActive ? 'nav-active' : 'nav-link'
+						isActive ? 'header-nav-active' : 'header-nav-link'
 					}
 					to="/settings"
 				>
@@ -42,7 +43,7 @@ function Header() {
 				</NavLink>
 				<NavLink
 					className={({ isActive }) =>
-						isActive ? 'nav-active' : 'nav-link'
+						isActive ? 'header-nav-active' : 'header-nav-link'
 					}
 					to="/community"
 				>

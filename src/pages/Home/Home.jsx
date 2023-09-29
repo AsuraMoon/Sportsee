@@ -10,9 +10,8 @@ function Home() {
   };
   
   return (
-    <div className="center jack">
-      <p>Home</p>
-      <ul>
+    <>
+      <ul className="center">
         <li>
           <button id='12' key='12' onClick={() => handleClick(12)}>utilisateur 12</button>
         </li>
@@ -20,7 +19,7 @@ function Home() {
           <button id='18' key='18' onClick={() => handleClick(18)}>utilisateur 18</button>
         </li>
       </ul>
-    </div>
+    </>
   );
 }
 
