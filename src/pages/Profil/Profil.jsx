@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './Profil.scss';
+import { useFetch } from '../../services/useFetch';
 
 function Profil() {
   // Définition du titre de la page.
@@ -12,23 +13,20 @@ function Profil() {
   const baseCall = `http://localhost:3000/user/${id}`;
 
   // Utilisation de useState pour gérer l'état des données.
-  const [userData, setUserData] = useState(null);
+  /*const [userData, setUserData] = useState(null);
   const [activityData, setActivityData] = useState(null);
   const [averageSessionsData, setAverageSessionsData] = useState(null);
   const [performanceData, setPerformanceData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null);*/
 
   // Utilisation de useEffect pour effectuer les appels API au chargement du composant.
-  useEffect(() => {
+  /*useEffect(() => {
     async function fetchDataFromAPI() {
       try {
-        const response = await fetch(baseCall);
-        if (!response.ok) {
-          throw new Error('Erreur réseau');
-        }
-        const data = await response.json();
-        setUserData(data);
+        const userResponse = await fetch(baseCall);
+        const userData = await userResponse.json();
+        setUserData(userData);
 
         const activityResponse = await fetch(`${baseCall}/activity`);
         const activityData = await activityResponse.json();
@@ -71,10 +69,30 @@ function Profil() {
     }
 
     fetchDataFromAPI();
-  }, [baseCall]);
+  }, [baseCall]);*/
+  const userData = useFetch(
+		baseCall,
+		id,
+		'/mockedData/user-performance.json'
+	)
+	const activityData = useFetch(
+		`${baseCall}/activity`,
+		id,
+		'/mockedData/user-activity.json'
+	)
+	const averageSessionsData = useFetch(
+		`${baseCall}/average-sessions`,
+		id,
+		'/mockedData/user-average-sessions.json'
+	)
+	const performanceData = useFetch(
+		`${baseCall}/performance`,
+		id,
+		'/mockedData/user-performance.json'
+	)
 
   // Affichage des données formatées dans un format lisible (JSON) si disponible.
-  if (loading) {
+  /*if (loading) {
     return (
       <section className="profil-wrapper">
         <h2 className="center">Chargement...</h2>
@@ -88,7 +106,7 @@ function Profil() {
         <h2 className="center">Une erreur est survenue !</h2>
       </section>
     );
-  }
+  }*/
 
   return (
     <div className='center'>
