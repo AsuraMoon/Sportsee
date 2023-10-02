@@ -10,7 +10,6 @@ function Profil() {
 
   const { id } = useParams(); // Récupération de l'ID de l'utilisateur depuis les paramètres d'URL.
   const baseCall = `http://localhost:3000/user/${id}`;
-  const baseMocked = `../../../public/mockedData/`;
 
   // Utilisation de useState pour gérer l'état des données.
   const [userData, setUserData] = useState(null);
@@ -29,7 +28,7 @@ function Profil() {
           throw new Error('Erreur réseau');
         }
         const data = await response.json();
-        setUserData(data.data);
+        setUserData(data);
 
         const activityResponse = await fetch(`${baseCall}/activity`);
         const activityData = await activityResponse.json();
@@ -47,19 +46,19 @@ function Profil() {
       } catch (error) {
         // En cas d'erreur, récupérez les données depuis le fichier mock.
         try {
-          const mockResponse = await fetch(`${baseMocked}user-main-data.json`);
+          const mockResponse = await fetch(`/mockedData/user-main-data.json`);
           const mockData = await mockResponse.json();
-          setUserData(mockData.data);
+          setUserData(mockData);
 
-          const mockActivityResponse = await fetch(`${baseMocked}user-activity.json`);
+          const mockActivityResponse = await fetch(`/mockedData/user-activity.json`);
           const mockActivityData = await mockActivityResponse.json();
           setActivityData(mockActivityData);
 
-          const mockAverageSessionsResponse = await fetch(`${baseMocked}user-average-sessions.json`);
+          const mockAverageSessionsResponse = await fetch(`/mockedData/user-average-sessions.json`);
           const mockAverageSessionsData = await mockAverageSessionsResponse.json();
           setAverageSessionsData(mockAverageSessionsData);
 
-          const mockPerformanceResponse = await fetch(`${baseMocked}user-performance.json`);
+          const mockPerformanceResponse = await fetch(`/mockedData/user-performance.json`);
           const mockPerformanceData = await mockPerformanceResponse.json();
           setPerformanceData(mockPerformanceData);
 
@@ -72,7 +71,7 @@ function Profil() {
     }
 
     fetchDataFromAPI();
-  }, [baseCall, baseMocked]);
+  }, [baseCall]);
 
   // Affichage des données formatées dans un format lisible (JSON) si disponible.
   if (loading) {

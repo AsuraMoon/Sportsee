@@ -13,10 +13,10 @@ function Home() {
     <>
       <ul className="center">
         <li>
-          <button id='12' key='12' onClick={() => handleClick(12)}>utilisateur 12</button>
+          <button className="home-button" id='12' key='12' onClick={() => handleClick(12)}>utilisateur 12</button>
         </li>
         <li>
-          <button id='18' key='18' onClick={() => handleClick(18)}>utilisateur 18</button>
+          <button className="home-button" id='18' key='18' onClick={() => handleClick(18)}>utilisateur 18</button>
         </li>
       </ul>
     </>

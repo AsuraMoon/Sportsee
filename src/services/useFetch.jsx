@@ -41,7 +41,8 @@ export function useFetch(urlAPI, userID, urlMockedData) {
             setMockedData(
               data.find(
                 (item) =>
-                  item.id === parseInt(userID) || item.userId === parseInt(userID)
+                  item.id === parseInt(userID) ||
+                  item.userId === parseInt(userID)
               )
             );
           }
