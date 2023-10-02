@@ -70,26 +70,13 @@ function Profil() {
 
     fetchDataFromAPI();
   }, [baseCall]);*/
-  const userData = useFetch(
-		baseCall,
-		id,
-		'/mockedData/user-performance.json'
-	)
-	const activityData = useFetch(
-		`${baseCall}/activity`,
-		id,
-		'/mockedData/user-activity.json'
-	)
-	const averageSessionsData = useFetch(
-		`${baseCall}/average-sessions`,
-		id,
-		'/mockedData/user-average-sessions.json'
-	)
-	const performanceData = useFetch(
-		`${baseCall}/performance`,
-		id,
-		'/mockedData/user-performance.json'
-	)
+  const userData = useFetch(baseCall,	id,	'/mockedData/user-performance.json');
+
+	const activityData = useFetch(`${baseCall}/activity`, id, '/mockedData/user-activity.json');
+
+	const averageSessionsData = useFetch(`${baseCall}/average-sessions`, id, '/mockedData/user-average-sessions.json');
+
+	const performanceData = useFetch(`${baseCall}/performance`, id, '/mockedData/user-performance.json');
 
   // Affichage des données formatées dans un format lisible (JSON) si disponible.
   /*if (loading) {
