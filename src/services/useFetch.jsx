@@ -30,25 +30,21 @@ export function useFetch(urlAPI, userID, urlMockedData) {
         // Convertit la réponse en format JSON.
         const data = await response.json();
 
-        if (isDataMocked === false) {
+        if (!isDataMocked) {
           // Si les données sont réelles, met à jour l'état apiData avec les données de l'API.
           setApiData(data.data);
-        } 
-				else if (isDataMocked === true) {
-          if (userID) {
-            // Si les données sont simulées (mock) et qu'un userID est spécifié,
-            // recherche l'objet correspondant dans les données simulées.
-            setMockedData(
-              data.find(
-                (item) =>
-                  item.id === parseInt(userID) ||
-                  item.userId === parseInt(userID)
-              )
-            );
-          }
+        } else if (isDataMocked && userID) {
+          // Si les données sont simulées (mock) et qu'un userID est spécifié,
+          // recherche l'objet correspondant dans les données simulées.
+          setMockedData(
+            data.find(
+              (item) =>
+                item.id === parseInt(userID) ||
+                item.userId === parseInt(userID)
+            )
+          );
         }
-      } 
-			catch (err) {
+      } catch (err) {
         console.error(err);
 
         if (urlMockedData) {
@@ -58,8 +54,7 @@ export function useFetch(urlAPI, userID, urlMockedData) {
 
         // Définit l'état d'erreur correspondant à l'API réelle ou aux données simulées.
         errorSetState(true);
-      } 
-			finally {
+      } finally {
         // Marque le chargement comme terminé, que ce soit un succès ou une erreur.
         setLoading(false);
       }

@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import './Profil.scss';
 import { useFetch } from '../../services/useFetch';
+
+import './Profil.scss';
 
 function Profil() {
   // Définition du titre de la page.
