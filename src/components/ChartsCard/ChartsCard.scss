@@ -1,0 +1,18 @@
+/* ---------------------------------------- */
+/* ==             CHARTSCARD             */
+/*---------------------------------------- */
+.charts-card {
+	width: 16.25rem;
+	height: 16.25rem;
+	border-radius: 5px;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+	&.average-sessions {
+		background-color: #ff0000;
+	}
+	&.performance {
+		background-color: #282d30;
+	}
+	&.score {
+		background-color: #fbfbfb;
+	}
+}

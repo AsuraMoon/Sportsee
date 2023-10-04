@@ -1,0 +1,66 @@
+@import '../../styles/Variables.scss';
+
+/* ---------------------------------------- */
+/* ==                CARD                */
+/*---------------------------------------- */
+.card {
+	display: flex;
+	width: 12.125em;
+	margin-bottom: 2.4375em;
+	padding: 2em;
+	border-radius: 5px;
+	background: #fbfbfb;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+	font-size: 0.75rem;
+	@include desktop-breakpoint {
+		font-size: 1rem;
+	}
+	&:last-child {
+		@include desktop-breakpoint {
+			margin-bottom: 0;
+		}
+	}
+	p {
+		margin: 0;
+	}
+	&-icon {
+		width: 1.1875em;
+		height: 1.1875em;
+		&-wrapper {
+			position: relative;
+			width: 3.75em;
+			height: 3.75em;
+			margin-right: 1.5rem;
+			border-radius: 6px;
+			&.calorie {
+				background: rgba(255, 0, 0, 0.07);
+			}
+			&.protein {
+				background: rgba(74, 184, 255, 0.1);
+			}
+			&.carbohydrate {
+				background: rgba(249, 206, 35, 0.1);
+			}
+			&.lipid {
+				background: rgba(253, 81, 129, 0.1);
+			}
+		}
+	}
+	&-data-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+	}
+	&-title {
+		color: #282d30;
+		font-size: 1.25em;
+		font-weight: 700;
+		line-height: 1.5em;
+	}
+	&-subtitle {
+		color: #74798c;
+		font-size: 0.875rem;
+		font-weight: 500;
+		line-height: 1.5rem;
+	}
+}

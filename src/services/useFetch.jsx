@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 // Cette fonction personnalisée permet de gérer les appels à une API,
 // en prenant en compte la possibilité d'utiliser des données simulées (mock).
 export function useFetch(urlAPI, userID, urlMockedData) {
+
+
+  let isProd = true;
   // État pour stocker les données de l'API réelle.
   const [apiData, setApiData] = useState(null);
 
@@ -22,18 +25,20 @@ export function useFetch(urlAPI, userID, urlMockedData) {
     // Cette fonction asynchrone effectue les appels à l'API et gère les données simulées en cas d'erreur.
 
     // Fonction pour effectuer l'appel à l'API ou aux données simulées.
-    async function fetchData(fetchURL, isDataMocked, errorSetState) {
+    async function fetchData(fetchURL, isProd, errorSetState) {
+      // console.log(fetchURL)
       try {
         // Effectue l'appel à l'URL spécifiée.
         const response = await fetch(fetchURL);
 
         // Convertit la réponse en format JSON.
         const data = await response.json();
+        
 
-        if (!isDataMocked) {
+        if (isProd) {
           // Si les données sont réelles, met à jour l'état apiData avec les données de l'API.
           setApiData(data.data);
-        } else if (isDataMocked && userID) {
+        } else if (!isProd && userID) {
           // Si les données sont simulées (mock) et qu'un userID est spécifié,
           // recherche l'objet correspondant dans les données simulées.
           setMockedData(
@@ -44,14 +49,9 @@ export function useFetch(urlAPI, userID, urlMockedData) {
             )
           );
         }
-      } catch (err) {
-        console.error(err);
-
-        if (urlMockedData) {
-          // En cas d'erreur, si des données simulées sont disponibles, réessaie avec les données simulées.
-          fetchData(urlMockedData, true, setErrorMocked);
-        }
-
+      } catch (err) {       
+        // En cas d'erreur, si des données simulées sont disponibles, réessaie avec les données simulées.
+        fetchData(urlMockedData, false, setErrorMocked);      
         // Définit l'état d'erreur correspondant à l'API réelle ou aux données simulées.
         errorSetState(true);
       } finally {
@@ -61,7 +61,12 @@ export function useFetch(urlAPI, userID, urlMockedData) {
     }
 
     // Démarre l'appel à l'API réelle.
-    fetchData(urlAPI, false, setErrorAPI);
+    if(isProd){      
+    fetchData(urlAPI, isProd, setErrorAPI);
+    }else{
+      fetchData(urlMockedData, isProd, setErrorAPI);
+    }
+    
   }, [urlAPI, userID, urlMockedData]); // Déclenche l'effet lorsque les dépendances changent.
 
   // Retourne un objet contenant les états et les fonctions de gestion.
