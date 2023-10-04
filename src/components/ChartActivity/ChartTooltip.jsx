@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-function CustomToolTip({ active, payload }) {
+function ChartTooltip({ active, payload }) {
 	if (active && payload && payload.length) {
 		return (
 			<div className="tooltip">
@@ -12,7 +12,7 @@ function CustomToolTip({ active, payload }) {
 	return null
 }
 
-CustomToolTip.propTypes = {
+ChartTooltip.propTypes = {
 	/**
 	 * Whether or not the tooltip is active
 	 */
@@ -23,4 +23,4 @@ CustomToolTip.propTypes = {
 	payload: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default CustomToolTip
+export default ChartTooltip

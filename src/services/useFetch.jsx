@@ -67,7 +67,7 @@ export function useFetch(urlAPI, userID, urlMockedData) {
       fetchData(urlMockedData, isProd, setErrorAPI);
     }
     
-  }, [urlAPI, userID, urlMockedData]); // Déclenche l'effet lorsque les dépendances changent.
+  }, [urlAPI, userID, urlMockedData, isProd]); // Déclenche l'effet lorsque les dépendances changent.
 
   // Retourne un objet contenant les états et les fonctions de gestion.
   return { isLoading, apiData, mockedData, errorAPI, errorMocked };

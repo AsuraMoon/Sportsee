@@ -3,6 +3,17 @@ import { useEffect } from 'react';
 import { useFetch } from '../../services/useFetch';
 
 import './Profil.scss';
+import ChartActivity from '../../components/ChartActivity/ChartActivity';
+import ChartsCard from '../../components/ChartsCard/ChartsCard';
+import ChartAverageSessions from '../../components/ChartAverageSessions/ChartAverageSessions';
+import ChartPerformance from '../../components/ChartPerformance/ChartPerformance';
+import ChartGoal from '../../components/ChartGoal/ChartGoal';
+import Card from '../../components/Card/Card';
+
+import energy from '../../assets/energy.svg'
+import chicken from '../../assets/chicken.svg'
+import apple from '../../assets/apple.svg'
+import cheeseburger from '../../assets/cheeseburger.svg'
 
 function Profil() {
   // Définition du titre de la page.
@@ -56,12 +67,94 @@ function Profil() {
 	}
   
   return (
-    <div className='center'>
-      <pre>{JSON.stringify(userData, null, 2)}</pre>
-      <pre>{JSON.stringify(activityData, null, 2)}</pre>
-      <pre>{JSON.stringify(averageSessionsData, null, 2)}</pre>
-      <pre>{JSON.stringify(performanceData, null, 2)}</pre>
-    </div>
+<section className="profil-wrapper">
+			{userData && (
+				<div className="profil">
+					<h2 className="profil-title">
+						Bonjour{' '}
+						<span className="profil-firstName">
+							{userData.userInfos.firstName}
+						</span>
+					</h2>
+					<p className="profil-subtitle">
+						Félicitation ! Vous avez explosé vos objectifs hier 👏
+					</p>
+					<div className="dashboard">
+						<div className="dashboard-charts-wrapper">
+							<div className="activity-charts">
+								{activityData && (
+									<ChartActivity
+										data={activityData.sessions}
+									/>
+								)}
+							</div>
+							<div className="small-card-wrapper">
+								{averageSessionsData && (
+									<ChartsCard
+										className="average-sessions"
+										content={
+											<ChartAverageSessions
+												data={
+													averageSessionsData.sessions
+												}
+											/>
+										}
+									/>
+								)}
+
+								{performanceData && (
+									<ChartsCard
+										className="performance"
+										content={
+											<ChartPerformance
+												data={performanceData}
+											/>
+										}
+									/>
+								)}
+								{userData && (
+									<ChartsCard
+										className="score"
+										content={<ChartGoal data={userData} />}
+									/>
+								)}
+							</div>
+						</div>
+
+						<div className="dashboard-aside">
+							<Card
+								userKeyData={userData.keyData.calorieCount}
+								unit="kCal"
+								subtitle="Calories"
+								className="calorie"
+								logo={energy}
+							/>
+							<Card
+								userKeyData={userData.keyData.proteinCount}
+								unit="g"
+								subtitle="Proteines"
+								className="protein"
+								logo={chicken}
+							/>
+							<Card
+								userKeyData={userData.keyData.carbohydrateCount}
+								unit="g"
+								subtitle="Glucides"
+								className="carbohydrate"
+								logo={apple}
+							/>
+							<Card
+								userKeyData={userData.keyData.lipidCount}
+								unit="g"
+								subtitle="Lipides"
+								className="lipid"
+								logo={cheeseburger}
+							/>
+						</div>
+					</div>
+				</div>
+			)}
+		</section>
   );
 }
 
