@@ -1,4 +1,5 @@
 import "./Community.scss";
+import "../../styles/Variables.scss"
 
 import ComingSoon from "../../layout/NotPage/NotPage";
 
@@ -7,9 +8,7 @@ function Community() {
   
   return (
     <>
-      <div>
-        <ComingSoon/>
-      </div>
+      <ComingSoon/>
     </>
   );
 }

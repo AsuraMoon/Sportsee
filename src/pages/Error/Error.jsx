@@ -9,13 +9,12 @@ function Error() {
 
   return (
     <>
-      <div>
+      <div className="center wrap">
         Error 404
         <Link to="/">
           <img
             src={logo}
             alt="SportSee Logo"
-            className="nav-logo vertical-center"
           />
           <p>retour a la maison</p>
         </Link>
