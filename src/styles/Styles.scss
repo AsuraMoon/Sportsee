@@ -1,0 +1,93 @@
+@import './variables.scss';
+
+/* ---------------------------------------- */
+/* ==              FONT                 */
+/*---------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@mixin main-typography {
+	font-family: 'Roboto', sans-serif;
+	font-size: map-get($font-size, desktop);
+}
+
+@mixin title-typography {
+	font-family: 'Roboto', sans-serif;
+}
+
+html {
+	@include main-typography;
+}
+
+h1 {
+	@include title-typography;
+}
+
+/* ---------------------------------------- */
+/* ==            GENERAL                */
+/*---------------------------------------- */
+
+body {
+	margin: 0;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+a {
+	color: $primary-color;
+	text-decoration: none;
+	&:hover {
+		color: $primary-color;
+	}
+}
+
+h1 {
+	color: $primary-color;
+	@include no-margin;
+}
+
+h2 {
+	@include no-margin;
+}
+
+h3 {
+	@include no-margin;
+}
+
+h4 {
+	@include no-margin;
+}
+
+h5 {
+	@include no-margin;
+}
+
+h6 {
+	@include no-margin;
+}
+
+.center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.vertical-center {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+section {
+	width: 100%;
+	margin-top: 5.6875rem;
+	margin-left: 7.3125rem;
+	padding-top: 2rem;
+}
+
+#root {
+	display: flex;
+}

@@ -1,0 +1,63 @@
+@import '../../styles/Variables.scss';
+
+/* ---------------------------------------- */
+/* ==                PROFIL                 */
+/*---------------------------------------- */
+.profil {
+	width: 830px;
+	margin: auto;
+	padding-left: 10px;
+	@include desktop-breakpoint {
+		width: fit-content;
+		padding-left: 0;
+	}
+	&-title {
+		font-size: 3rem;
+		font-weight: 500;
+	}
+	&-firstName {
+		color: #ff0101;
+	}
+	&-subtitle {
+		margin: 0;
+		margin-top: 2.5625rem;
+		margin-bottom: 4.8125rem;
+		font-size: 1.125rem;
+	}
+}
+
+.dashboard {
+	display: flex;
+	flex-direction: column;
+	@include desktop-breakpoint {
+		flex-direction: row;
+	}
+	&-charts-wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		order: 2;
+		@include desktop-breakpoint {
+			order: 1;
+		}
+	}
+	&-aside {
+		display: flex;
+		justify-content: space-between;
+		order: 1;
+		@include desktop-breakpoint {
+			display: block;
+			order: 2;
+			margin-left: 1.9375rem;
+		}
+	}
+}
+
+.small-card-wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 2rem;
+	@include desktop-breakpoint {
+		margin-bottom: 0;
+	}
+}

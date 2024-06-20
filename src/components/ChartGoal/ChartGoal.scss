@@ -1,0 +1,31 @@
+/* ---------------------------------------- */
+/* ==              CHART GOAL              */
+/*---------------------------------------- */
+.score {
+	position: relative;
+}
+
+.chartgoal {
+	&-title {
+		position: absolute;
+		top: 1.5rem;
+		left: 1.875rem;
+		color: #20253a;
+		font-size: 0.9375rem;
+		font-weight: 500;
+	}
+	&-label {
+		color: #9b9eac;
+		font-weight: 500;
+		line-height: 1.625rem;
+		text-align: center;
+		p {
+			margin: 0;
+		}
+		.percent {
+			color: #282d30;
+			font-size: 1.625rem;
+			font-weight: 700;
+		}
+	}
+}

@@ -1,0 +1,33 @@
+@import '../../styles/Variables.scss';
+
+/* ---------------------------------------- */
+/* ==                HEADER                */
+/*---------------------------------------- */
+.header{
+	position: fixed;
+	z-index: 2;
+	background: #020203;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 10px 0px;
+	width: 100%;
+	&-active {
+		text-decoration: underline;
+	}
+	&-nav{
+		width: 70%;
+		display: flex;
+		justify-content: space-around;
+		&-active {
+			text-decoration: underline;
+		}
+		&-link,
+		&-active {
+			color: #ffffff;
+			font-size: 1.5rem;
+			font-weight: 500;
+		}
+	}
+}
+
