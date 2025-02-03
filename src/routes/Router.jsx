@@ -28,6 +28,10 @@ export const Router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
+        path: "/Sportsee/",
+        element: <Home />
+      },
+      {
         path: "/",
         element: <Home />
       },
